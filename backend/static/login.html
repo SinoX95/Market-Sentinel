@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff" id="theme-meta">
+<title>Connexion · Market Sentinel</title>
+<link rel="manifest" href="/static/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="48x48" href="/static/icons/favicon-48.png">
+<link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Sentinel">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>
+:root{color-scheme:light;--bg:#fff;--tile:#f5f5f6;--ink:#0b0b0c;--mut:#86878d;--on:#fff;--err:#d3302f}
+@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){color-scheme:dark;--bg:#000;--tile:#111113;--ink:#fff;--mut:#7d7e84;--on:#000;--err:#ff5d55}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#000;--tile:#111113;--ink:#fff;--mut:#7d7e84;--on:#000;--err:#ff5d55}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+.box{width:min(380px,100%)}
+h1{margin:0 0 6px;font-size:32px;font-weight:800;letter-spacing:-.03em}
+.sub{margin:0 0 30px;color:var(--mut)}
+label{display:block;font-size:13px;font-weight:600;color:var(--mut);margin:0 0 6px 4px}
+input{width:100%;padding:15px 20px;border:0;border-radius:99px;background:var(--tile);color:var(--ink);font:inherit;margin-bottom:16px}
+input:focus{outline:2px solid var(--ink)}
+button{width:100%;margin-top:10px;padding:16px;border:0;border-radius:99px;font:inherit;font-weight:700;background:var(--ink);color:var(--on);cursor:pointer}
+button:hover{opacity:.88}button:disabled{opacity:.5;cursor:wait}
+button:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.err{min-height:22px;margin-top:14px;color:var(--err);font-size:14px;text-align:center}
+.hint{margin-top:10px;text-align:center;color:var(--mut);font-size:13px}.hint b{color:var(--ink)}
+.seg{display:flex;background:var(--tile);border-radius:99px;padding:4px;margin:0 0 26px}
+.seg button{margin:0;padding:11px;background:transparent;color:var(--mut);font-size:15px}
+.seg button[aria-selected="true"]{background:var(--ink);color:var(--on)}
+.seg button:hover{opacity:1;color:var(--ink)}.seg button[aria-selected="true"]:hover{color:var(--on)}
+.txt{margin:0 0 20px;color:var(--mut);font-size:14.5px}
+.code{text-align:center;font-size:24px;font-weight:700;letter-spacing:.4em;font-variant-numeric:tabular-nums;padding-left:calc(20px + .4em)}
+.link{width:auto;display:block;margin:12px auto 0;padding:8px;background:none;color:var(--mut);font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.link:hover{opacity:1;color:var(--ink)}
+[hidden]{display:none!important}
+</style>
+<script>
+/* Thème clair/sombre choisi manuellement dans l'application (cookie "theme") : respecté ici aussi, avant l'affichage pour éviter un flash. */
+try {
+  var mt = document.cookie.match(/(?:^|; )theme=([^;]*)/), vt = mt && decodeURIComponent(mt[1]);
+  if (vt === "light" || vt === "dark") document.documentElement.dataset.theme = vt;
+  document.getElementById("theme-meta").content = (vt === "dark" || (vt !== "light" && matchMedia("(prefers-color-scheme: dark)").matches)) ? "#000000" : "#ffffff";
+} catch (e) {}
+</script>
+</head>
+<body>
+<main class="box">
+  <h1 id="t-h">Connexion</h1>
+  <p class="sub">Market Sentinel</p>
+  <div class="seg" role="tablist">
+    <button type="button" role="tab" id="tab-guest" aria-selected="true">Invité</button>
+    <button type="button" role="tab" id="tab-admin" aria-selected="false">Administrateur</button>
+  </div>
+
+  <!-- invité : demande d'un code (envoyé à l'administrateur), saisie du code transmis, puis le nom -->
+  <section id="guest">
+    <div id="g-start">
+      <p class="txt" id="t-g1">L'accès au site se fait sur invitation. Génère un code : il est envoyé à l'administrateur, qui te le transmettra s'il t'accorde l'accès.</p>
+      <button type="button" id="g-gen">Générer un code à 6 chiffres</button>
+    </div>
+    <form id="g-code" hidden>
+      <p class="txt" id="t-g2">Demande envoyée à l'administrateur. Saisis ici le code à 6 chiffres qu'il t'a transmis.</p>
+      <label for="g-c" id="t-g3">Code d'invitation</label>
+      <input id="g-c" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" required>
+      <button type="submit" id="t-g4">Valider</button>
+      <button type="button" class="link" id="g-new">Générer un nouveau code</button>
+    </form>
+    <form id="g-name" hidden>
+      <p class="txt" id="t-g5">Code accepté. Dernière étape : comment t'appelles-tu ?</p>
+      <label for="g-n" id="t-g6">Ton nom</label>
+      <input id="g-n" maxlength="40" autocomplete="name" required>
+      <button type="submit" id="t-g7">Créer mon compte</button>
+    </form>
+  </section>
+
+  <!-- administrateur : email + mot de passe, puis code reçu par email -->
+  <section id="admin" hidden>
+    <form id="a-pw">
+      <label for="a-e">Email</label>
+      <input id="a-e" inputmode="email" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+      <label for="a-p" id="t-a1">Mot de passe</label>
+      <input id="a-p" type="password" autocomplete="current-password" required>
+      <button type="submit" id="t-a2">Continuer</button>
+    </form>
+    <form id="a-code" hidden>
+      <p class="txt" id="a-msg"></p>
+      <label for="a-c" id="t-a3">Code de connexion</label>
+      <input id="a-c" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" required>
+      <button type="submit" id="t-a4">Se connecter</button>
+      <button type="button" class="link" id="a-back">Recommencer</button>
+    </form>
+  </section>
+  <div class="err" id="e" role="alert"></div>
+</main>
+<script>
+/* Langue : même règle que le reste du site (i18n.js) — français par défaut, anglais seulement si choisi dans le profil
+   (cookie ms_lang). L'ancien cookie « lang » n'existe plus : la page s'affichait parfois en anglais par erreur. */
+const m = document.cookie.match(/(?:^|; )ms_lang=([^;]*)/);
+const EN = !!m && decodeURIComponent(m[1]) === "en";
+const T = (fr, en) => (EN ? en : fr);
+const $ = (id) => document.getElementById(id);
+if (EN) {
+  document.documentElement.lang = "en";
+  for (const [id, txt] of Object.entries({ "t-h": "Sign in", "tab-guest": "Guest", "tab-admin": "Administrator",
+    "t-g1": "Access to this site is by invitation. Generate a code: it is sent to the administrator, who will pass it on to you if they grant you access.",
+    "g-gen": "Generate a 6-digit code", "t-g2": "Request sent to the administrator. Enter here the 6-digit code they gave you.", "t-g3": "Invitation code",
+    "t-g4": "Confirm", "g-new": "Generate a new code", "t-g5": "Code accepted. Last step: what's your name?", "t-g6": "Your name", "t-g7": "Create my account",
+    "t-a1": "Password", "t-a2": "Continue", "t-a3": "Sign-in code", "t-a4": "Sign in", "a-back": "Start over" })) $(id).textContent = txt;
+}
+/* Messages du serveur (en français) -> anglais, d'après leur code. */
+const EN_ERR = { rate: "Too many attempts: try again later.", expired: "Code expired or already used: request a new code.", bad_code: "Incorrect code.",
+  bad_credentials: "Incorrect email or password.", locked: "Sign-in disabled: the server password is not configured.",
+  bad_name: "Invalid name: 1 to 40 characters (letters, digits, spaces, . ' -).", full: "The site has reached its maximum number of accounts." };
+const err = (t) => { $("e").textContent = t || ""; };
+async function post(url, body) {
+  let r;
+  try { r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body || {}) }); }
+  catch (x) { throw new Error(T("Serveur injoignable.", "Server unreachable.")); }
+  let j = {}; try { j = await r.json(); } catch (x) { /* corps non JSON */ }
+  if (!r.ok) { const x = new Error(EN ? (EN_ERR[j.code] || "Sign-in error.") : (j.detail || "Erreur de connexion.")); x.code = j.code; throw x; }
+  return j;
+}
+/* Bouton occupé pendant l'appel ; l'erreur éventuelle s'affiche sous le formulaire. */
+async function busy(btn, fn) {
+  btn.disabled = true; err("");
+  try { await fn(); } catch (x) { err(x.message); if (x.onError) x.onError(); return x; } finally { btn.disabled = false; }
+}
+const submitBtn = (ev) => ev.submitter || ev.target.querySelector("button[type=submit]");
+
+/* ---- onglets ---- */
+function tab(which) {
+  const g = which === "guest";
+  $("tab-guest").setAttribute("aria-selected", String(g)); $("tab-admin").setAttribute("aria-selected", String(!g));
+  $("guest").hidden = !g; $("admin").hidden = g; err("");
+  try { localStorage.setItem("ms_login_tab", which); } catch (x) { /* stockage indisponible */ }
+}
+$("tab-guest").onclick = () => tab("guest");
+$("tab-admin").onclick = () => { tab("admin"); if ($("a-code").hidden) $("a-e").focus(); };
+
+/* ---- invité ---- la demande (rid) reste dans ce navigateur : le code ne fonctionne que sur l'appareil qui l'a demandé */
+const STORE = "ms_invite", DAY = 864e5;
+const pending = () => { try { const p = JSON.parse(localStorage.getItem(STORE) || "null"); return p && p.rid && Date.now() - p.at < DAY ? p : null; } catch (x) { return null; } };
+const forget = () => { try { localStorage.removeItem(STORE); } catch (x) { /* rien */ } };
+function guestStep(step) {
+  $("g-start").hidden = step !== "start"; $("g-code").hidden = step !== "code"; $("g-name").hidden = step !== "name";
+  if (step !== "start") setTimeout(() => $(step === "code" ? "g-c" : "g-n").focus(), 0);
+}
+$("g-gen").onclick = (ev) => busy(ev.currentTarget, async () => {
+  const j = await post("/invite/request");
+  try { localStorage.setItem(STORE, JSON.stringify({ rid: j.rid, at: Date.now() })); } catch (x) { /* rien */ }
+  $("g-c").value = ""; guestStep("code");
+});
+$("g-new").onclick = () => { forget(); guestStep("start"); err(""); };
+let okCode = "";
+$("g-code").onsubmit = (ev) => { ev.preventDefault(); busy(submitBtn(ev), async () => {
+  const p = pending();
+  if (!p) { guestStep("start"); throw new Error(T("Demande expirée : génère un nouveau code.", "Request expired: generate a new code.")); }
+  const c = $("g-c").value.trim();
+  try { await post("/invite/check", { rid: p.rid, code: c }); }
+  catch (x) { if (x.code === "expired") { forget(); guestStep("start"); } throw x; }
+  okCode = c; guestStep("name");
+}); };
+$("g-name").onsubmit = (ev) => { ev.preventDefault(); busy(submitBtn(ev), async () => {
+  const p = pending();
+  try { await post("/invite/redeem", { rid: p && p.rid, code: okCode, name: $("g-n").value }); }
+  catch (x) { if (x.code === "expired") { forget(); guestStep("start"); } throw x; }
+  forget(); location.href = "/";
+}); };
+
+/* ---- administrateur ---- */
+let pid = null;
+const adminStep = (code) => { $("a-pw").hidden = code; $("a-code").hidden = !code; setTimeout(() => $(code ? "a-c" : "a-e").focus(), 0); };
+$("a-pw").onsubmit = (ev) => { ev.preventDefault(); busy(submitBtn(ev), async () => {
+  const j = await post("/login", { email: $("a-e").value, password: $("a-p").value });
+  pid = j.pid; $("a-p").value = ""; $("a-c").value = "";
+  $("a-msg").textContent = j.sent ? T("Un code à 6 chiffres vient d'être envoyé à ton adresse email. Il est valable 10 minutes.", "A 6-digit code has just been sent to your email address. It is valid for 10 minutes.")
+    : T("L'envoi d'email n'est pas configuré sur le serveur : le code a été écrit dans les journaux du serveur (Cloud Run → Journaux).", "Email sending is not configured on the server: the code was written to the server logs (Cloud Run → Logs).");
+  adminStep(true);
+}); };
+$("a-code").onsubmit = (ev) => { ev.preventDefault(); busy(submitBtn(ev), async () => {
+  try { await post("/login/verify", { pid, code: $("a-c").value.trim() }); }
+  catch (x) { if (x.code === "expired") { pid = null; adminStep(false); } throw x; }
+  location.href = "/";
+}); };
+$("a-back").onclick = () => { pid = null; adminStep(false); err(""); };
+
+/* ---- état de départ ---- */
+let first = "guest";
+try { first = pending() ? "guest" : (localStorage.getItem("ms_login_tab") || "guest"); } catch (x) { /* rien */ }
+tab(first === "admin" ? "admin" : "guest");
+guestStep(pending() ? "code" : "start");
+fetch("/auth/hint").then((r) => r.json()).then((d) => { if (d.locked) err(EN_ERR.locked && T("Connexion administrateur désactivée : le mot de passe du serveur n'est pas configuré (LOGIN_PASSWORD).", EN_ERR.locked)); }).catch(() => {});
+</script>
+<script>if ("serviceWorker" in navigator && location.protocol !== "file:") addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));</script>
+</body>
+</html>

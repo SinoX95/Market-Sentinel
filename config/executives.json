@@ -1,0 +1,11 @@
+{
+  "executives": [
+    {"slug": "huang-nvda", "name": "Jensen Huang", "ticker": "NVDA", "query": "Jensen Huang NVIDIA"},
+    {"slug": "su-amd", "name": "Lisa Su", "ticker": "AMD", "query": "Lisa Su AMD"},
+    {"slug": "tan-avgo", "name": "Hock Tan", "ticker": "AVGO", "query": "Hock Tan Broadcom"},
+    {"slug": "wei-tsm", "name": "C.C. Wei", "ticker": "TSM", "query": "C.C. Wei TSMC"},
+    {"slug": "arora-panw", "name": "Nikesh Arora", "ticker": "PANW", "query": "Nikesh Arora Palo Alto Networks"},
+    {"slug": "kurtz-crwd", "name": "George Kurtz", "ticker": "CRWD", "query": "George Kurtz CrowdStrike"},
+    {"slug": "prince-net", "name": "Matthew Prince", "ticker": "NET", "query": "Matthew Prince Cloudflare"}
+  ]
+}

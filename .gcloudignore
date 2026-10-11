@@ -1,0 +1,22 @@
+# Fichiers envoyés chez Google à chaque « gcloud run deploy --source . » : seulement le code du serveur.
+.venv/
+data/
+hosting/
+__pycache__/
+*.pyc
+.git/
+*.zip
+.env
+# secrets et fichiers locaux : jamais envoyés (les secrets passent par Google Secret Manager)
+config/settings.json
+deploy/
+.firebase/
+.firebaserc
+firebase.json
+firestore.rules
+*-1.py
+start*.bat
+stop*.bat
+start*.sh
+start-docker.*
+docker-compose.yml

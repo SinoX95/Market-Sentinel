@@ -1,0 +1,125 @@
+{
+  "investors": [
+    {
+      "slug": "berkshire",
+      "name": "Berkshire Hathaway (Warren Buffett)",
+      "cik": "0001067983",
+      "news_query": "Berkshire Hathaway 13F stake",
+      "style": "Value / qualité : entreprises à fort avantage concurrentiel, achetées à un prix raisonnable et gardées très longtemps. Portefeuille concentré sur peu de lignes.",
+      "style_en": "Value / quality: businesses with a strong competitive moat, bought at a fair price and held for a very long time. Concentrated portfolio."
+    },
+    {
+      "slug": "pershing",
+      "name": "Pershing Square (Bill Ackman)",
+      "cik": "0001336528",
+      "news_query": "Pershing Square Ackman 13F stake",
+      "style": "Investisseur activiste concentré : une dizaine de positions dans de grandes entreprises de qualité, avec forte conviction et horizon long.",
+      "style_en": "Concentrated activist investor: about ten positions in large quality companies, high conviction and long horizon."
+    },
+    {
+      "slug": "scion",
+      "name": "Scion Asset Management (Michael Burry)",
+      "cik": "0001649339",
+      "news_query": "Michael Burry Scion 13F",
+      "style": "Contrarien : cherche les actifs mal évalués ou les excès de valorisation, parfois via des options (puts/calls).",
+      "style_en": "Contrarian: looks for mispriced assets or valuation excesses, sometimes through options (puts/calls)."
+    },
+    {
+      "slug": "bridgewater",
+      "name": "Bridgewater Associates (Ray Dalio)",
+      "cik": "0001350694",
+      "news_query": "Bridgewater Associates 13F",
+      "style": "Macro systématique : allocation diversifiée guidée par le cycle économique et le contrôle du risque, beaucoup d'ETF.",
+      "style_en": "Systematic macro: diversified allocation driven by the economic cycle and risk control, many ETFs."
+    },
+    {
+      "slug": "duquesne",
+      "name": "Duquesne Family Office (Stanley Druckenmiller)",
+      "cik": "0001536411",
+      "news_query": "Druckenmiller Duquesne 13F",
+      "style": "Macro / croissance : paris concentrés, changements rapides de positions selon les catalyseurs et la liquidité.",
+      "style_en": "Macro / growth: concentrated bets, positions change quickly with catalysts and liquidity."
+    },
+    {
+      "slug": "renaissance",
+      "name": "Renaissance Technologies (Jim Simons)",
+      "cik": "0001037389",
+      "quant": true,
+      "news_query": "Renaissance Technologies 13F",
+      "style": "Quantitatif : des milliers de petites positions issues de modèles statistiques ; les mouvements reflètent des signaux algorithmiques, pas une thèse fondamentale.",
+      "style_en": "Quantitative: thousands of small positions from statistical models; moves reflect algorithmic signals, not a fundamental thesis."
+    },
+    {
+      "slug": "baupost",
+      "name": "Baupost Group (Seth Klarman)",
+      "cik": "0001061768",
+      "news_query": "Baupost Klarman 13F",
+      "style": "Value profond : marge de sécurité, situations spéciales, patience, souvent beaucoup de liquidités.",
+      "style_en": "Deep value: margin of safety, special situations, patience, often a lot of cash."
+    },
+    {
+      "slug": "tiger",
+      "name": "Tiger Global",
+      "cik": "0001167483",
+      "news_query": "Tiger Global 13F",
+      "style": "Croissance technologique : paris sur les entreprises internet, logiciel et IA à forte croissance.",
+      "style_en": "Tech growth: bets on high-growth internet, software and AI companies."
+    },
+    {
+      "slug": "coatue",
+      "name": "Coatue Management",
+      "cik": "0001135730",
+      "news_query": "Coatue Management 13F",
+      "style": "Croissance tech long/short : technologie, IA, semi-conducteurs.",
+      "style_en": "Tech long/short: technology, AI, semiconductors."
+    },
+    {
+      "slug": "soros",
+      "name": "Soros Fund Management (George Soros)",
+      "cik": "0001029160",
+      "news_query": "Soros Fund Management 13F",
+      "style": "Macro global : paris directionnels sur devises, taux et marchés, portefeuille actions ajusté rapidement.",
+      "style_en": "Global macro: directional bets on currencies, rates and markets, equity portfolio adjusted quickly."
+    },
+    {
+      "slug": "appaloosa",
+      "name": "Appaloosa (David Tepper)",
+      "cik": "0001656456",
+      "news_query": "Appaloosa Tepper 13F",
+      "style": "Situations spéciales et macro : positions concentrées, achats opportunistes d'actions décotées après un choc de marché.",
+      "style_en": "Special situations and macro: concentrated positions, opportunistic purchases of discounted stocks after a market shock."
+    },
+    {
+      "slug": "thirdpoint",
+      "name": "Third Point (Dan Loeb)",
+      "cik": "0001040273",
+      "news_query": "Third Point Loeb 13F",
+      "style": "Activiste orienté événements : prend des participations pour pousser des changements stratégiques dans l'entreprise.",
+      "style_en": "Event-driven activist: takes stakes to push for strategic change at the company."
+    },
+    {
+      "slug": "greenlight",
+      "name": "Greenlight Capital (David Einhorn)",
+      "cik": "0001079114",
+      "news_query": "Greenlight Einhorn 13F",
+      "style": "Value long/short : achète des titres décotés et vend à découvert des titres jugés surévalués.",
+      "style_en": "Value long/short: buys discounted stocks and shorts those seen as overvalued."
+    },
+    {
+      "slug": "point72",
+      "name": "Point72 (Steve Cohen)",
+      "cik": "0001603466",
+      "news_query": "Point72 Cohen 13F",
+      "style": "Multi-stratégies actions long/short : portefeuille très diversifié avec une rotation rapide.",
+      "style_en": "Multi-strategy equity long/short: highly diversified portfolio with fast turnover."
+    },
+    {
+      "slug": "elliott",
+      "name": "Elliott Management (Paul Singer)",
+      "cik": "0001791786",
+      "news_query": "Elliott Management Singer 13F",
+      "style": "Activiste et situations spéciales : grosses participations et dialogue (parfois conflictuel) avec les directions.",
+      "style_en": "Activist and special situations: large stakes and (sometimes confrontational) dialogue with management."
+    }
+  ]
+}

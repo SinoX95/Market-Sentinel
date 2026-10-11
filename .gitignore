@@ -1,0 +1,30 @@
+# Secrets : ne doivent jamais entrer dans l'historique Git (une fois commis, ils y restent).
+.env
+.env.*
+config/settings.json
+*.pem
+*.key
+*-service-account*.json
+serviceAccountKey*.json
+
+# Environnement Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Données locales
+pgdata/
+data/
+*.db
+*.sqlite3
+
+# Déploiement / outils
+.firebase/
+*.zip
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+
+# Anciennes sauvegardes de fichiers (ex. service-1.py) : à supprimer plutôt qu'à versionner
+*-1.py

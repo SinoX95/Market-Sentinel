@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "marketsentinel-9f9e4"
+  },
+  "targets": {
+    "marketsentinel-9f9e4": {
+      "hosting": {
+        "pretty": [
+          "market-sentinel"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

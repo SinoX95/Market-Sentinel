@@ -1,0 +1,67 @@
+{
+  "companies": [
+    {
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "match": [
+        "NVIDIA CORP"
+      ]
+    },
+    {
+      "ticker": "AMD",
+      "name": "AMD",
+      "match": [
+        "ADVANCED MICRO DEVICES"
+      ]
+    },
+    {
+      "ticker": "AVGO",
+      "name": "Broadcom",
+      "match": [
+        "BROADCOM"
+      ]
+    },
+    {
+      "ticker": "TSM",
+      "name": "TSMC",
+      "match": [
+        "TAIWAN SEMICONDUCTOR"
+      ]
+    },
+    {
+      "ticker": "PANW",
+      "name": "Palo Alto Networks",
+      "match": [
+        "PALO ALTO NETWORKS"
+      ]
+    },
+    {
+      "ticker": "CRWD",
+      "name": "CrowdStrike",
+      "match": [
+        "CROWDSTRIKE"
+      ]
+    },
+    {
+      "ticker": "NET",
+      "name": "Cloudflare",
+      "match": [
+        "CLOUDFLARE"
+      ]
+    },
+    {
+      "ticker": "VRT",
+      "name": "Vertiv",
+      "match": [
+        "VERTIV"
+      ]
+    },
+    {
+      "ticker": "ANET",
+      "name": "Arista Networks",
+      "match": [
+        "ARISTA NETWORKS"
+      ]
+    }
+  ]
+}

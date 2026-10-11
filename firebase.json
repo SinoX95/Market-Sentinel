@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "hosting",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "headers": [
+      { "source": "/static/**", "headers": [
+        { "key": "Cache-Control", "value": "no-cache" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ] }
+    ],
+    "rewrites": [
+      { "source": "**", "run": { "serviceId": "market-sentinel", "region": "europe-west1" } }
+    ]
+  },
+  "firestore": { "rules": "firestore.rules" }
+}

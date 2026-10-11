@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff" id="theme-meta">
+<title>Market Sentinel</title>
+<!-- appli installable (écran d'accueil du téléphone, fenêtre à part sur ordinateur) -->
+<link rel="manifest" href="/static/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="48x48" href="/static/icons/favicon-48.png">
+<link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Sentinel">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="stylesheet" href="/static/style.css">
+<script>
+/* Thème clair/sombre choisi manuellement (cookie "theme") : appliqué avant l'affichage pour éviter un flash. */
+try {
+  var m = document.cookie.match(/(?:^|; )theme=([^;]*)/), v = m && decodeURIComponent(m[1]);
+  if (v === "light" || v === "dark") document.documentElement.dataset.theme = v;
+  document.getElementById("theme-meta").content = (v === "dark" || (v !== "light" && matchMedia("(prefers-color-scheme: dark)").matches)) ? "#000000" : "#ffffff";
+} catch (e) {}
+/* Proposition d'installation (Chrome, Edge, Android) : gardée de côté dès le début, car elle peut arriver avant que
+   l'application soit chargée ; le bouton « Installer l'appli » de l'onglet Profil s'en sert. */
+window.__installEvt = null;
+addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); window.__installEvt = e; });
+</script>
+</head>
+<body>
+<main>
+  <div class="topwrap" id="topwrap">
+    <header class="top">
+      <a class="brand" href="/" aria-label="Market Sentinel, accueil">
+        <h1>Market Sentinel</h1>
+      </a>
+      <div class="actions">
+        <button id="refresh" class="btn" aria-label="Actualiser" title="Actualiser">
+          <svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v6h-6"/></svg><span class="lbl">Actualiser</span>
+        </button>
+        <button id="me" class="avatar" data-tab-open="profile" aria-label="Mon profil" title="Mon profil"><span id="me-i">?</span></button>
+      </div>
+    </header>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button role="tab" id="t-overview" aria-selected="true" data-tab="overview">Vue d'ensemble</button>
+      <button role="tab" id="t-market" aria-selected="false" data-tab="market">Marché</button>
+      <button role="tab" id="t-sources" aria-selected="false" data-tab="sources">Sources</button>
+      <button role="tab" id="t-profile" aria-selected="false" data-tab="profile">Profil</button>
+    </nav>
+  </div>
+  <div class="subbar">
+    <div class="sub"><span id="status" role="status">Chargement…</span> <span id="live"></span></div>
+    <div class="search" role="search">
+      <input id="q" type="search" placeholder="Rechercher une entreprise…" autocomplete="off" spellcheck="false"
+             role="combobox" aria-expanded="false" aria-controls="q-list" aria-autocomplete="list" aria-label="Rechercher une entreprise ou un symbole">
+      <ul id="q-list" role="listbox" hidden></ul>
+    </div>
+  </div>
+  <div id="problems" class="banner" role="status" hidden></div>
+
+  <section id="overview" role="tabpanel" aria-labelledby="t-overview">
+    <div id="groups"></div>
+  </section>
+
+  <section id="market" role="tabpanel" aria-labelledby="t-market" hidden></section>
+  <section id="sources" role="tabpanel" aria-labelledby="t-sources" hidden></section>
+  <section id="profile" role="tabpanel" aria-labelledby="t-profile" hidden></section>
+
+  <p class="note">Le score technique repose sur les prix uniquement. Les analyses rassemblent des faits sourcés (fondamentaux, analystes, actualités, dépôts 13F) ; aucun de ces éléments n'est un conseil en investissement.</p>
+</main>
+<button id="totop" class="totop" aria-label="Retour en haut" title="Retour en haut" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<dialog id="detail" aria-labelledby="d-title">
+  <div class="dlg">
+    <div class="dlg-head">
+      <h2 id="d-title"></h2>
+      <button class="btn" id="d-close" aria-label="Fermer">Fermer</button>
+    </div>
+    <div id="d-body" tabindex="-1"></div>
+  </div>
+</dialog>
+<script>
+if (location.protocol === "file:") {
+  document.querySelector("main").innerHTML = '<p style="font:16px system-ui;padding:24px;max-width:560px">Cette page ne fonctionne pas ouverte comme un simple fichier. Lance <b>start.bat</b>, puis ouvre <b>http://localhost:8000</b> dans ton navigateur.</p>';
+  document.getElementById("detail").remove();
+} else {
+  // ordre imposé : formats/devises, dictionnaire, puis l'application
+  const load = (src) => new Promise((ok, ko) => { const x = document.createElement("script"); x.src = src; x.onload = ok; x.onerror = ko; document.body.append(x); });
+  load("/static/i18n.js").then(() => load("/static/dict-en.js")).then(() => load("/static/motion.js")).then(() => load("/static/app.js"));
+  if ("serviceWorker" in navigator) addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));
+}
+</script>
+</body>
+</html>

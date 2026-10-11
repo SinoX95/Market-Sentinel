@@ -1,0 +1,5 @@
+fastapi==0.142.*
+uvicorn[standard]==0.54.*
+yfinance>=0.2.61
+psycopg[binary]==3.2.*
+google-cloud-firestore>=2.16

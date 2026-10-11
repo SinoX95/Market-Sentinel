@@ -1,0 +1,19 @@
+.venv/
+data/
+hosting/
+deploy/
+__pycache__/
+*.pyc
+.git/
+*.zip
+.env
+firebase.json
+.firebaserc
+.firebase/
+firestore.rules
+start*.bat
+stop*.bat
+start*.sh
+# secrets : jamais dans l'image du serveur (ils arrivent par Google Secret Manager)
+config/settings.json
+*-1.py
